@@ -1,3 +1,4 @@
+import os
 import requests
 from datetime import datetime
 from metpy.calc import specific_humidity_from_dewpoint
@@ -8,7 +9,7 @@ class WeatherApi:
     def __init__(self):
         self.lat = "14.666814983804455"
         self.lon = "121.09985990637664"
-        self.key = "df62ced2a5384272b23399d6f48fc0d6"
+        self.key = os.getenv("WEATHERBIT_KEY")
         self.date = datetime.now()
         self.date = datetime(self.date.year, self.date.month, self.date.day, self.date.hour).strftime('%Y%m%d%H%M')
         self.waterlevel_url = f"http://121.58.193.173:8080/water/map_list.do?ymdhm={self.date}"

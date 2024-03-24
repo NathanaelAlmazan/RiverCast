@@ -1,15 +1,15 @@
+import os
 import psycopg2
 import pandas as pd
 from datetime import datetime
 
-
 class Database:
     def __init__(self):
         self.conn = psycopg2.connect(
-            host="localhost",
-            database="rivercast",
-            user="rivercast",
-            password="floodwatcher"
+            host=os.getenv("DATABASE_HOST"),
+            database=os.getenv("DATABASE_NAME"),
+            user=os.getenv("DATABASE_USER"),
+            password=os.getenv("DATABASE_PASS")
         )
         self.cur = self.conn.cursor()
 
