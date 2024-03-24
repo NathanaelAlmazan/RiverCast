@@ -175,8 +175,8 @@ class RiverCast:
         self.model(np.zeros(shape=(64, 30, 5)), training=False)
 
         # load weights
-        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lib', 'checkpoints', 'checkpoint_002')
-        self.model.load_weights(path).expect_partial()
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lib', 'rivercast_002.h5')
+        self.model.load_weights(path)
 
         self.attn_scores = None
 
