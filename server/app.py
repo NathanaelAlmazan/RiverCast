@@ -39,6 +39,8 @@ def update_database():
     try:
         get_current_weather()  # update historical database
         generate_forecast()  # update forecast database
+
+        print("Successfully updated database.")
     except Exception as e:
         print("Failed to update database:", e)
     
