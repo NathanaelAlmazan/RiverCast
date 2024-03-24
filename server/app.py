@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask, jsonify, request
 from flask_apscheduler import APScheduler
 from server.controller.db import Database
@@ -39,7 +40,7 @@ def update_database():
         get_current_weather()  # update historical database
         generate_forecast()  # update forecast database
 
-        print("Successfully updated database.")
+        print("Successfully updated database:", datetime.now().isoformat())
     except Exception as e:
         print("Failed to update database:", e)
     

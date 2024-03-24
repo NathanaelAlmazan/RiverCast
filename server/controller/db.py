@@ -73,8 +73,6 @@ class Database:
         self.cur.execute(query)
         self.conn.commit()
 
-        print(self.cur.rowcount)
-
     def save_current_data(self, data: list[dict]):
         values = [f"""
                 ('{d['TIMESTAMP'].strftime('%Y-%m-%d')}', {d['TEMPERATURE']}, {d['WIND_SPEED']}, {d['RAINFALL']}, {d['HUMIDITY']}, 
@@ -94,8 +92,6 @@ class Database:
         
         self.cur.execute(query)
         self.conn.commit()
-
-        print(self.cur.rowcount)
 
     def get_current_data(self):
         current_date = datetime.now().strftime('%Y-%m-%d')

@@ -41,13 +41,9 @@ def generate_forecast():
     rf = RandomForest()
     rf_pred = rf.predict(inputs)
 
-    print(rf_pred.shape)
-
     # generate rivercast forecast
     gpt = RiverCast()
     gpt_pred = gpt.predict(inputs)
-
-    print(gpt_pred.shape)
     
     # ensable forecast
     max_pred = np.max((rf_pred, gpt_pred), axis=0)
@@ -75,6 +71,3 @@ def get_current_weather():
     # save weather data to database
     db = Database()
     db.save_current_data(weather)
-
-get_current_weather()
-generate_forecast()
