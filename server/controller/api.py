@@ -1,10 +1,11 @@
 import os
 import requests
 from datetime import datetime
+from dotenv import load_dotenv
 from metpy.calc import specific_humidity_from_dewpoint
 from metpy.units import units
 
-print(os.getenv("WEATHERBIT_KEY"))
+load_dotenv()
 
 class WeatherApi:
     def __init__(self):

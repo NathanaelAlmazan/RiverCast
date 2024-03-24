@@ -1,10 +1,7 @@
-from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_apscheduler import APScheduler
 from server.controller.db import Database
 from server.routines import get_current_weather, generate_forecast
-
-load_dotenv()
 
 app = Flask(__name__)
 

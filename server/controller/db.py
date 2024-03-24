@@ -2,6 +2,9 @@ import os
 import psycopg2
 import pandas as pd
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Database:
     def __init__(self):
