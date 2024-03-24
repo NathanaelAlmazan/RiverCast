@@ -1,3 +1,4 @@
+import os
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_apscheduler import APScheduler
@@ -7,6 +8,8 @@ from server.routines import get_current_weather, generate_forecast
 load_dotenv()
 
 app = Flask(__name__)
+
+print(os.getenv("WEATHERBIT_KEY"))
 
 scheduler = APScheduler()
 
