@@ -71,6 +71,3 @@ def get_current_weather():
     # save weather data to database
     db = Database()
     db.save_current_data(weather)
-
-get_current_weather()
-generate_forecast()
