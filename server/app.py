@@ -7,6 +7,8 @@ from server.routines import get_current_weather, generate_forecast
 app = Flask(__name__)
 
 scheduler = APScheduler()
+scheduler.init_app(app)
+scheduler.start()
 
 ######################## API ROUTES ############################
 @app.route("/current", methods=['GET'])
@@ -43,11 +45,7 @@ def update_database():
         print("Successfully updated database:", datetime.now().isoformat())
     except Exception as e:
         print("Failed to update database:", e)
-    
+
 
 if __name__ == "__main__":
-    scheduler.init_app(app)
-
-    scheduler.start()
-
     app.run(host="0.0.0.0", port=8000, debug=False)
