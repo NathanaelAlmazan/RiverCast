@@ -3,12 +3,15 @@ from flask import Flask, jsonify, request
 from flask_apscheduler import APScheduler
 from server.controller.db import Database
 from server.routines import get_current_weather, generate_forecast
+from flask_cors import CORS
 
 app = Flask(__name__)
 
 scheduler = APScheduler()
 scheduler.init_app(app)
 scheduler.start()
+
+CORS(app)
 
 ######################## API ROUTES ############################
 @app.route("/current", methods=['GET'])
