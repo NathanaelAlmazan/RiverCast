@@ -199,7 +199,7 @@ class Database:
             'DESCRIPTION': data[7],
             'WATERLEVEL': data[8],
             'MIN_WATERLEVEL': data[9],
-            'MAX_WATERLEVEL': data[10]
+            'MAX_WATERLEVEL': ((data[8] + data[10]) / 2)
         } for data in history]
 
         return history
