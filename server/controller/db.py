@@ -199,7 +199,7 @@ class Database:
             'DESCRIPTION': data[7],
             'WATERLEVEL': data[8],
             'MIN_WATERLEVEL': data[9],
-            'MAX_WATERLEVEL': ((data[8] + data[10]) / 2) if data[1] == "NANGKA" else (((data[8] + data[10]) / 2) - 2)
+            'MAX_WATERLEVEL': ((data[8] + data[10]) / 2) if data[1] == "NANGKA" else (((data[8] + data[10]) / 2) + 2)
         } for data in history]
 
         return history
