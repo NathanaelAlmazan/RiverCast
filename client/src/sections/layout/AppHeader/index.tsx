@@ -246,7 +246,6 @@ const AppHeader = ({ toggleNavCollapsed, routesConfig }: Props) => {
               <MenuItem>
                 <AppThemeSwitcher isMenu />
               </MenuItem>
-              <MenuItem>Setting</MenuItem>
             </Menu>
           </Box>
         </Box>

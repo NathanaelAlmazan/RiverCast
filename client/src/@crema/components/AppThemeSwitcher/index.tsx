@@ -86,7 +86,7 @@ const AppThemeSwitcher: React.FC<AppNotificationsProps> = ({
     <>
       {isMenu ? (
         <Box component="span" onClick={onModeChange}>
-          Message
+          {themeMode === ThemeMode.LIGHT ? "Dark Mode" : "Light Mode"}
         </Box>
       ) : (
         <AppTooltip title="Mode" placement={tooltipPosition}>

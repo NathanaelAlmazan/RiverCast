@@ -61,6 +61,8 @@ const Header = () => {
           }}
         >
           <Button
+            component="a"
+            href="/about"
             variant="contained"
             color="primary"
             sx={{
