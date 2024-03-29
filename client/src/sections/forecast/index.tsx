@@ -57,9 +57,9 @@ export default function Forecast() {
     const searchParams = useSearchParams();
     const infoViewActionsContext = useInfoViewActionsContext();
     
-    const [{ apiData: current, loading: currentLoader }] = useGetDataApi<CurrentWeather[]>('https://rivercast.automos.net/current', []);
-    const [{ apiData: forecast, loading: forecastLoader }] = useGetDataApi<ForecastWeather[]>('https://rivercast.automos.net/forecast', []);
-    const [{ apiData: history, loading: historyLoader }, { setData }] = useGetDataApi<HistoricalWeather[]>('https://rivercast.automos.net/history?year=2023', []);
+    const [{ apiData: current, loading: currentLoader }] = useGetDataApi<CurrentWeather[]>('https://rivercast.automos.net/api/current', []);
+    const [{ apiData: forecast, loading: forecastLoader }] = useGetDataApi<ForecastWeather[]>('https://rivercast.automos.net/api/forecast', []);
+    const [{ apiData: history, loading: historyLoader }, { setData }] = useGetDataApi<HistoricalWeather[]>('https://rivercast.automos.net/api/history?year=2023', []);
 
     const [station, setStation] = useState<string>("NANGKA");
     const [currentLevel, setCurrentLevel] = useState<number>(15);
@@ -166,7 +166,7 @@ export default function Forecast() {
     };
 
     const handleChangeYear = (year: number) => {
-        getDataApi<HistoricalWeather[]>(`https://rivercast.automos.net/history?year=${year}`, infoViewActionsContext)
+        getDataApi<HistoricalWeather[]>(`https://rivercast.automos.net/api/history?year=${year}`, infoViewActionsContext)
             .then(data => {
                 setData(data);
             })
