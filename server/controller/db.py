@@ -1,7 +1,7 @@
 import os
 import psycopg2
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -128,7 +128,8 @@ class Database:
         return history
     
     def get_forecast_data(self):
-        current_date = datetime.now().strftime('%Y-%m-%d')
+        current_date = datetime.now() - timedelta(days=3)
+        current_date = current_date.strftime('%Y-%m-%d')
         query = f"""
                 SELECT DATE(datetime), station,
                     MAX(temperature) AS temperature,
