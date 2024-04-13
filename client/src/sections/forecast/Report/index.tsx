@@ -8,14 +8,21 @@ import AppCard from '@crema/components/AppCard';
 import Image from 'next/image';
 import { ForecastWeather } from '..';
 
-export function getRiverForecastIcon(difference: number) {
-  if (difference <= 0.15) return "/assets/images/weather/ic_normal.png";
-  else if (difference > 0.15 && difference < 1.0) return "/assets/images/weather/ic_low.png";
-  else if (difference >= 1.0 && difference < 3.0) return "/assets/images/weather/ic_moderate.png";
+export function getRiverForecastIcon(riverlevel: number, station: string) {
+ if (station === "NANGKA") {
+  if (riverlevel < 17.0) return "/assets/images/weather/ic_normal.png";
+  else if (riverlevel >= 17.0 && riverlevel < 18.0) return "/assets/images/weather/ic_low.png";
+  else if (riverlevel >= 18.0 && riverlevel < 19.0) return "/assets/images/weather/ic_moderate.png";
   else return "/assets/images/weather/ic_high.png";
+ } else {
+  if (riverlevel < 14.0) return "/assets/images/weather/ic_normal.png";
+  else if (riverlevel >= 14.0 && riverlevel < 15.0) return "/assets/images/weather/ic_low.png";
+  else if (riverlevel >= 16.0 && riverlevel < 17.0) return "/assets/images/weather/ic_moderate.png";
+  else return "/assets/images/weather/ic_high.png";
+ }
 }
 
-const Report = ({ level, forecasts }: { level: number, forecasts: ForecastWeather[] }) => {
+const Report = ({ station, level, forecasts }: { station: string, level: number, forecasts: ForecastWeather[] }) => {
   const theme = useTheme();
 
   return (
@@ -58,7 +65,7 @@ const Report = ({ level, forecasts }: { level: number, forecasts: ForecastWeathe
                 }}
               >
                 <Image
-                  src={getRiverForecastIcon(weather.MAX_WATERLEVEL - level)}
+                  src={getRiverForecastIcon(weather.MAX_WATERLEVEL, station)}
                   alt='chart'
                   width={46}
                   height={46}

@@ -21,7 +21,7 @@ const AgeOfAudience = ({ audienceData }: Props) => {
       }}
     >
       <Typography component="div" variant="h4" align="center" sx={{ paddingTop: 3 }}>
-        Feature Importances
+        Feature Importance
       </Typography>
 
       <Box

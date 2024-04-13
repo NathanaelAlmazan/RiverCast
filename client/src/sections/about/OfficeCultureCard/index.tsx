@@ -16,13 +16,7 @@ const OfficeCultureCard = () => {
       <Typography
         sx={{ mb: 2, color: (theme) => theme.palette.text.secondary }}
       >
-        The study aimed to improve flood forecasting in the Philippines, focusing on the Marikina River, 
-        which often experiences flooding due to various meteorological factors. The existing deterministic 
-        river level forecasting system lacked accuracy, prompting the development of a new model capable of capturing 
-        complex relationships between meteorological conditions and river behavior. Using historical data on 
-        precipitation, temperature, humidity, and wind speed, the Auto-Regressive Transformer model achieved 
-        an accuracy of 94%. However, further improvements are still possible, suggesting the need for 
-        continued research and refinement to enhance forecasting capabilities.
+        {"We wanted to make predicting floods in the Philippines, especially along the Marikina River, better. Deterministic methods of predicting floods wasn't very accurate, so we made a new model. RIVERCAST model looks at lots of different weather things like rain, temperature, and wind to estimate how high the river might get. It did pretty well, getting it right about 94% of the time. But we think we can make it even better with more work and research."}
       </Typography>
     </AppCardMedia>
   );

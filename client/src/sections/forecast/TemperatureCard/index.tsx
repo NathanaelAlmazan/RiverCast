@@ -1,17 +1,34 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import DayTemperature, { getForecastImage } from './DayTemperature';
+import DayTemperature from './DayTemperature';
 import { teal } from '@mui/material/colors';
 import { Fonts } from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
 import Image from 'next/image';
 import { ForecastWeather } from '..';
+import { capitalCase } from 'change-case';
+import { getRiverForecastIcon } from '../Report';
 
 type TemperatureCardProps = {
+  station: string
   forecasts: ForecastWeather[]
 };
 
-const TemperatureCard: React.FC<TemperatureCardProps> = ({ forecasts }) => {
+export function getRiverForecastDescription(riverlevel: number, station: string) {
+  if (station === "NANGKA") {
+   if (riverlevel < 17.0) return "Normal river level";
+   else if (riverlevel >= 17.0 && riverlevel < 18.0) return "Elevated river level";
+   else if (riverlevel >= 18.0 && riverlevel < 19.0) return "Heightened river level";
+   else return "critical river level";
+  } else {
+   if (riverlevel < 14.0) return "Normal river level";
+   else if (riverlevel >= 14.0 && riverlevel < 15.0) return "Elevated river level";
+   else if (riverlevel >= 16.0 && riverlevel < 17.0) return "Heightened river level";
+   else return "Critical river level";
+  }
+ }
+
+const TemperatureCard: React.FC<TemperatureCardProps> = ({ station, forecasts }) => {
   return (
     <AppCard
       sxStyle={{ height: 1 }}
@@ -23,7 +40,7 @@ const TemperatureCard: React.FC<TemperatureCardProps> = ({ forecasts }) => {
           px: 6,
           color: 'primary.contrastText',
           flex: 1,
-          backgroundColor: teal[500],
+          backgroundColor: teal[100],
           display: 'flex',
           flexDirection: 'column',
         }}
@@ -39,9 +56,10 @@ const TemperatureCard: React.FC<TemperatureCardProps> = ({ forecasts }) => {
             sx={{
               fontWeight: Fonts.BOLD,
               fontSize: 16,
+              color: teal[800]
             }}
           >
-            Brgy. Nangka, Marikina City
+            {`Brgy. ${capitalCase(station)}, Marikina City`}
           </Box>
         </Box>
 
@@ -59,11 +77,12 @@ const TemperatureCard: React.FC<TemperatureCardProps> = ({ forecasts }) => {
           <Box
             component='h1'
             sx={{
+              color: teal[800], 
               fontWeight: Fonts.MEDIUM,
               fontSize: { xs: 24, sm: 36, md: 64, xl: 96 },
             }}
           >
-            {`${forecasts[0].TEMPERATURE.toFixed(0)}°C`}
+            {`${forecasts[0].MAX_WATERLEVEL.toFixed(0)}m`}
           </Box>
           <Box
             component='p'
@@ -71,18 +90,19 @@ const TemperatureCard: React.FC<TemperatureCardProps> = ({ forecasts }) => {
               display: 'flex',
               alignItems: 'center',
               fontSize: 14,
+              color: teal[800]
             }}
           >
             <Image
               style={{
-                marginRight: 12,
+                marginRight: 12
               }}
-              src={getForecastImage(forecasts[0].DESCRIPTION)}
+              src={getRiverForecastIcon(forecasts[0].MAX_WATERLEVEL, station)}
               alt='weather'
               width={24}
               height={25}
             />
-            {forecasts[0].DESCRIPTION}
+            {getRiverForecastDescription(forecasts[0].MAX_WATERLEVEL, station)}
           </Box>
         </Box>
       </Box>

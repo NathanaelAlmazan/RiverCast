@@ -3,22 +3,11 @@ import Box from '@mui/material/Box';
 import { Fonts } from '@crema/constants/AppEnums';
 import Image from 'next/image';
 import { ForecastWeather } from '..';
+import { getRiverForecastIcon } from '../Report';
 
 type DayTemperatureProps = {
   weather: ForecastWeather;
 };
-
-export function getForecastImage(description: string) {
-  if (description.toLowerCase().includes("sun")) {
-    return "/assets/images/weather/ic_sunny.png";
-  } else if (description.toLowerCase().includes("cloud")) {
-    return "/assets/images/weather/ic_partially_cloud.png";
-  } else if (description.toLowerCase().includes("rain")) {
-    return "/assets/images/weather/ic_rainy.png";
-  } else {
-    return "/assets/images/weather/ic_thunderstorm.png";
-  }
-}
 
 const DayTemperature: React.FC<DayTemperatureProps> = ({ weather }) => {
   return (
@@ -41,11 +30,22 @@ const DayTemperature: React.FC<DayTemperatureProps> = ({ weather }) => {
         {new Date(weather.TIMESTAMP).toLocaleDateString(undefined, { weekday: "short" })}
       </Box>
       <Box
+        component='span'
+        sx={{
+          mb: 3,
+          display: 'block',
+          fontWeight: Fonts.LIGHT,
+          fontSize: 12
+        }}
+      >
+        {`${weather.MAX_WATERLEVEL.toFixed(0)}m`}
+      </Box>
+      <Box
         sx={{
           display: 'inline-block',
         }}
       >
-        <Image src={getForecastImage(weather.DESCRIPTION)} alt='weather' width={27} height={20} />
+        <Image src={getRiverForecastIcon(weather.MAX_WATERLEVEL, weather.STATION)} alt='weather' width={27} height={20} />
       </Box>
     </Box>
   );
